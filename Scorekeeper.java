@@ -12,16 +12,13 @@ public class Scorekeeper
 
     public static void setDeckSize(int size) 
      {
-        deckSize = size;
+        deckSize = 27;
      }
 
     public static void updateScore() 
     {
-        long elapsedTime = System.currentTimeMillis() - startTime; // Calculate time elapsed
-        int speedFactor = 1000; 
-        int scoreIncrease = speedFactor / (int) elapsedTime; // Example formula for scoring
-        
-        score += scoreIncrease; // Increase the score based on the calculated score increase
+        score = 123; 
+        System.out.println(30 - (System.currentTimeMillis()- startTime / 1000) > 5 ? (30 - (System.currentTimeMillis()- startTime / 1000)) : 5);
     }
     
     public static int getScore() 
