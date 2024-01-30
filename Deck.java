@@ -4,15 +4,54 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-
+import java.util.ArrayList;
 import greenfoot.*;
 
 public class Deck 
 {
-    /****************************************************
-    ***   Leave as comment until ready to implement   ***
-    *****************************************************
-    // adds all the cards to the unshuffled deck.   
+    private Card[] unShuffledDeck;
+    private ArrayList<Card> shuffledDeck = new ArrayList<Card>();
+    
+    public int getNumCardsInDeck()
+    {
+        return shuffledDeck.size();
+    }
+    
+    public Card getTopCard()
+    {
+        return shuffledDeck.remove(0);
+    }
+    
+    public Card getShuffledCard(int index)
+    {
+        return shuffledDeck.get(index);
+    }
+    
+    public ArrayList<Card> getShuffledDeck()
+    {
+        return shuffledDeck;
+    }
+    
+    public int limitNumCardsInDeck(int number)
+    {
+        if (number <= 27)
+        {
+            return 27;
+        }
+        else 
+        {
+            return 81;
+        }
+    }
+    
+    public void createShuffledDeck()
+    {
+        for (int i = 1; i < unShuffledDeck. length; i++)
+        {
+        shuffledDeck.add((int) (Math. random() * shuffledDeck.size()), unShuffledDeck[i]);
+        }
+    }
+    
     private void populateUnshuffledDeckWithCards(int numOfCardsInDeck)        
     {
         unShuffledDeck[0] = new Card(Card.Shape.NO_SHAPE, Card.Color.NO_COLOR,0,0,
@@ -45,7 +84,7 @@ public class Deck
         unShuffledDeck[9] = new Card(Card.Shape.CIRCLE, Card.Color.RED,3,0,
                 new GreenfootImage("Triplets_0/circle_red_3_0.png"), 
                 new GreenfootImage("Triplets_0/circle_red_3_0_selected.png"));
-         unShuffledDeck[10] = new Card(Card.Shape.SQUARE, Card.Color.BLUE,1,0,
+        unShuffledDeck[10] = new Card(Card.Shape.SQUARE, Card.Color.BLUE,1,0,
                 new GreenfootImage("Triplets_0/square_blue_1_0.png"), 
                 new GreenfootImage("Triplets_0/square_blue_1_0_selected.png"));
         unShuffledDeck[11] = new Card(Card.Shape.SQUARE, Card.Color.BLUE,2,0,
@@ -269,5 +308,12 @@ public class Deck
           }
     }
     
-    **************  END OF COMMENT BLOCK  ***************/
+    Deck(int numOfCardsInDeck)
+    {
+        numOfCardsInDeck = limitNumCardsInDeck(numOfCardsInDeck);  // limits size to 27 or 81        
+        unShuffledDeck = new Card[numOfCardsInDeck + 1];           // playing cards plus blank card
+        shuffledDeck = new ArrayList<>();                          // Instantiates ArrayList with no elements
+        populateUnshuffledDeckWithCards(numOfCardsInDeck);         // Initializes Unshuffled Deck
+        createShuffledDeck();                                      // Initializes shuffled deck excluding blank card
+    }
 }
