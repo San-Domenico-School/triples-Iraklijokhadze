@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Player.class
  *
- * @ika
+ * @KIKA
  * @Jan 29, 2024
  */
 public class Player extends Actor
@@ -31,13 +31,10 @@ public class Player extends Actor
    
     private void selectCards()
     {
-        
-        
         for (int i = 0; i < cardsOnBoard.size(); i++)
         {
             if(Greenfoot.mouseClicked(cardsOnBoard.get(i)))
             {
-                
                 if(cardsOnBoard.get(i).getIsSelected())
                 {
                     cardsOnBoard.get(i).setIsSelected(false);
@@ -88,5 +85,6 @@ public class Player extends Actor
             dealer.checkIfTriple();
             resetCardsSelected();
         }
+        cardsOnBoard = (ArrayList) getWorld().getObjects(Card.class);
     }
 }
